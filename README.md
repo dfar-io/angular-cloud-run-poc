@@ -26,7 +26,7 @@ terraform apply
 
 1. Create Dockerfile
 2. Create .github/workflows/cicd.yml
-3. Create Github Actions Service Account with `Cloud Run Developer`
+3. Create Github Actions Service Account with `Cloud Run Admin` and `Service Usage Admin`
 4. Get JSON Key, format using `cat credentials.json | jq -r tostring`
 5. Add GCP_SERVICE_ACCOUNT_JSON_DEV to Repo secrets
 
