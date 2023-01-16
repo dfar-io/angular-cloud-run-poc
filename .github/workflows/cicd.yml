@@ -1,0 +1,25 @@
+name: CICD
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  cicd:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Authenticate to Google Cloud
+        #if: github.event_name == 'push'
+        uses: 'google-github-actions/auth@v1'
+        with:
+          credentials_json: ${{ secrets.GCP_SERVICE_ACCOUNT_JSON_DEV }}
+      - name: Build Container, Push to Google Container Registry
+        #if: github.event_name == 'push'
+        #gcr.io/PROJECT-NAME/YOUR-APPLICATION
+        run: gcloud builds submit --tag gcr.io/angular-cloud-run-poc/angular-cloud-run-poc
+      - name: Deploy to Cloud Run
+        #if: github.event_name == 'push'
+        run: gcloud run deploy --image gcr.io/angular-cloud-run-poc/angular-cloud-run-poc --port 4200
