@@ -26,9 +26,10 @@ terraform apply
 
 1. Create Dockerfile
 2. Create .github/workflows/cicd.yml
-3. Create Github Actions Service Account with `Cloud Build Editor`.
-4. Get JSON Key, format using `cat credentials.json | jq -r tostring`
-5. Add GCP_SERVICE_ACCOUNT_JSON_DEV to Repo secrets
+3. Enable Cloud Build API (https://console.developers.google.com/apis/api/cloudbuild.googleapis.com/overview)
+4. `gcloud builds submit --tag gcr.io/angular-cloud-run-poc/angular-cloud-run-poc`
+5. `gcloud run deploy angular-cloud-run-poc --image gcr.io/angular-cloud-run-poc/angular-cloud-run-poc --port 4200 --region us-central1 --allow-unauthenticated`
+6. Test using URL provided from deploy.
 
 ## Reference
 
