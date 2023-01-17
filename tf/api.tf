@@ -10,7 +10,7 @@ resource "google_cloud_run_service" "api" {
       containers {
         image = "us-docker.pkg.dev/cloudrun/container/hello"
         ports {
-          container_port = 5000
+          container_port = 80
         }
       }
     }

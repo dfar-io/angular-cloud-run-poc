@@ -25,10 +25,8 @@ terraform apply
 ## Set up API (IN PROGRESS)
 
 1. Create WebAPI with `dotnet new webapi -o api`
-2. Comment out UseHttpsRedirection and UseAuthorization()
-3. Create HealthController.
-4. Comment out UseHttpsRedirection()
-5. Create Dockerfile.
+2. Change WeatherForecastController route to ""
+3. Create Dockerfile
 
 [Reference](https://codelabs.developers.google.com/codelabs/cloud-run-hello-csharp#3)
 
