@@ -30,6 +30,13 @@ terraform apply
 
 [Reference](https://codelabs.developers.google.com/codelabs/cloud-run-hello-csharp#3)
 
+## Test Docker Image
+
+With Docker in docker installed and while CDed into the UI/API directory:
+
+1. `docker build -t app .`
+2. `docker run -p <YOUR_PORT>:<CONTAINER_PORT> app`
+
 ## Build & Deploy
 
 _This is done separately for both UI and API_
