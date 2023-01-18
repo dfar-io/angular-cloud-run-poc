@@ -22,7 +22,7 @@ terraform apply
 
 [Reference](https://medium.com/@larry_nguyen/how-to-deploy-angular-application-on-google-cloud-run-c6d472e07bd5)
 
-## Set up API (IN PROGRESS)
+## Set up API
 
 1. Create WebAPI with `dotnet new webapi -o api`
 2. Change WeatherForecastController route to ""
