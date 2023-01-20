@@ -6,7 +6,8 @@ POC of running an Angular app in GCP's Cloud Run
 1. Create GCP project
 2. Update tf/main.tf with your project ID.
 3. Enable Cloud Run Admin API (https://console.developers.google.com/apis/api/run.googleapis.com/overview)
-4. Generate infrastructure
+4. Enable Compute Engine API (if static IP required) (https://console.developers.google.com/apis/api/compute.googleapis.com/overview)
+5. Generate infrastructure
 ```
 gcloud auth application-default login
 terraform init
