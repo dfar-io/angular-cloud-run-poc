@@ -5,9 +5,7 @@ POC of running an Angular app in GCP's Cloud Run
 
 1. Create GCP project
 2. Update tf/main.tf with your project ID.
-3. Enable Cloud Run Admin API (https://console.developers.google.com/apis/api/run.googleapis.com/overview)
-4. Enable Compute Engine API (if static IP required) (https://console.developers.google.com/apis/api/compute.googleapis.com/overview)
-5. Generate infrastructure
+3. Generate infrastructure
 ```
 gcloud auth application-default login
 terraform init
@@ -42,13 +40,12 @@ With Docker in docker installed and while CDed into the UI/API directory:
 
 _This is done separately for both UI and API_
 
-1. Enable Cloud Build API (https://console.developers.google.com/apis/api/cloudbuild.googleapis.com/overview)
-2. CD into either UI or API.
+1. CD into either UI or API.
 2. `gcloud config set project PROJECT`
 3. `gcloud auth login`
-5. `gcloud builds submit --tag gcr.io/PROJECT/SERVICE`
-6. `gcloud run deploy SERVICE --image gcr.io/PROJECT/SERVICE --region us-central1 --allow-unauthenticated`
-7. Test using URL provided from deploy.
+4. `gcloud builds submit --tag gcr.io/PROJECT/SERVICE`
+5. `gcloud run deploy SERVICE --image gcr.io/PROJECT/SERVICE --region us-central1 --allow-unauthenticated`
+6. Test using URL provided from deploy.
 
 ## Troubleshooting
 

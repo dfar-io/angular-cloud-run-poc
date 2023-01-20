@@ -35,6 +35,10 @@ resource "google_cloud_run_service" "ui" {
       template[0].spec[0].containers[0].image
     ]
   }
+
+  depends_on = [
+    google_project_service.cloud_run
+  ]
 }
 
 # Allows public access

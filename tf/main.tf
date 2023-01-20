@@ -17,3 +17,40 @@ provider "google" {
   region  = "us-central1"
   zone    = "us-central1-c"
 }
+
+# Enable APIs automatically
+resource "google_project_service" "cloud_run" {
+  project = local.project_id
+  service = "run.googleapis.com"
+
+  timeouts {
+    create = "30m"
+    update = "40m"
+  }
+
+  disable_dependent_services = true
+}
+
+resource "google_project_service" "compute_engine" {
+  project = local.project_id
+  service = "compute.googleapis.com"
+
+  timeouts {
+    create = "30m"
+    update = "40m"
+  }
+
+  disable_dependent_services = true
+}
+
+resource "google_project_service" "cloud_build" {
+  project = local.project_id
+  service = "cloudbuild.googleapis.com"
+
+  timeouts {
+    create = "30m"
+    update = "40m"
+  }
+
+  disable_dependent_services = true
+}
