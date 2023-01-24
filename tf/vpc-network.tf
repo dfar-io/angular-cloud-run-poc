@@ -72,3 +72,8 @@ resource "google_compute_router_nat" "default" {
     source_ip_ranges_to_nat = ["ALL_IP_RANGES"]
   }
 }
+
+output "ip_address" {
+  description = "IP Address"
+  value       = google_compute_address.default.address
+}

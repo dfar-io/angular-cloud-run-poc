@@ -4,6 +4,8 @@ resource "google_cloud_run_service" "ui" {
   project = local.project_id
   name     = "gcp-cloud-run-poc-ui"
   location = "us-central1"
+  # enables updates to the service
+  autogenerate_revision_name = true
 
   template {
     spec {
