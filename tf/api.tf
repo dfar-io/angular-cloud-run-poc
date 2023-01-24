@@ -4,6 +4,8 @@ resource "google_cloud_run_service" "api" {
   project = local.project_id
   name     = "gcp-cloud-run-poc-api"
   location = "us-central1"
+  # enables updates to the service
+  autogenerate_revision_name = true
 
   template {
     spec {
@@ -11,6 +13,10 @@ resource "google_cloud_run_service" "api" {
         image = "us-docker.pkg.dev/cloudrun/container/hello"
         ports {
           container_port = 80
+        }
+        env {
+          name  = "CONNECTION_STRING"
+          value = "Data Source=${google_sql_database_instance.instance.public_ip_address};User Id=${google_sql_user.users.name};Password=${random_password.password.result};"
         }
       }
     }
