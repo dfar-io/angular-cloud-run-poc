@@ -12,6 +12,10 @@ resource "google_cloud_run_service" "api" {
         ports {
           container_port = 80
         }
+        env {
+          name  = "CONNECTION_STRING"
+          value = "Data Source=${google_sql_database_instance.instance.private_ip_address};User Id=${google_sql_user.users.name};Password=${random_password.password.result};"
+        }
       }
     }
     # needed for outbound static IP
