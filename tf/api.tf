@@ -4,6 +4,8 @@ resource "google_cloud_run_service" "api" {
   project = local.project_id
   name     = "gcp-cloud-run-poc-api"
   location = "us-central1"
+  # enables updates to the service
+  autogenerate_revision_name = true
 
   template {
     spec {
@@ -24,6 +26,8 @@ resource "google_cloud_run_service" "api" {
         "run.googleapis.com/vpc-access-connector" = google_vpc_access_connector.default.name
         "run.googleapis.com/vpc-access-egress"    = "all-traffic"
         "autoscaling.knative.dev/maxScale"        = "5"
+        # currently not supported by .NET and Cloud Run
+        #"run.googleapis.com/cloudsql-instances"   = google_sql_database_instance.instance.connection_name
       }
     }
   }
@@ -36,7 +40,10 @@ resource "google_cloud_run_service" "api" {
   # Ignore changes to image after creation
   lifecycle {
     ignore_changes = [
-      template[0].spec[0].containers[0].image
+      template[0].spec[0].containers[0].image,
+      template[0].metadata[0].annotations["client.knative.dev/user-image"],
+      template[0].metadata[0].annotations["run.googleapis.com/client-name"],
+      template[0].metadata[0].annotations["run.googleapis.com/client-version"]
     ]
   }
 
